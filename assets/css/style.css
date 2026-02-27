@@ -289,11 +289,11 @@ body.light-mode .toggle-switch {
 }
 
 .toggle-switch .icon.NL {
-  right: 38px; /* apart van EN, gecentreerd */
+  left: 9px; /* apart van EN, gecentreerd */
 }
 
 .toggle-switch .icon.EN {
-  right: 8px;
+  right: 9px;
 }
 
 /* ==============================
