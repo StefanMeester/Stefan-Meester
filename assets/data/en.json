@@ -1,1 +1,9 @@
-
+{
+  "nav_home": "Home",
+  "nav_portfolio": "Portfolio",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+  "hero_title": "Your Name",
+  "hero_subtitle": "AV Specialist & Visual Storyteller",
+  "hero_button": "View my work"
+}
