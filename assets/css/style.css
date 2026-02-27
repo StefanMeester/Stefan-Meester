@@ -235,20 +235,27 @@ body.light-mode .grid-preview {
 /* ==============================
    TOGGLE SWITCHES (Dark/Light + Language)
 ============================== */
+
+/* Algemene toggle container */
 .toggle-switch {
   position: relative;
-  width: 70px;
   height: 34px;
-  background: var(--bg-card);
   border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
 }
 
+/* Light mode achtergrond voor toggles */
 body.light-mode .toggle-switch {
   background: var(--bg-card-light);
 }
 
+/* ==============================
+   SLIDER CIRKEL
+============================== */
 .toggle-switch .toggle-slider {
   position: absolute;
   top: 50%;
@@ -256,23 +263,27 @@ body.light-mode .toggle-switch {
   transform: translateY(-50%);
   width: 26px;
   height: 26px;
-  background: var(--accent);
   border-radius: 50%;
+  background: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  transition: 0.3s;
+  z-index: 1;
+  transition: left 0.3s, background 0.3s;
 }
 
+/* Active slider positie (rechts) */
 .toggle-switch.active .toggle-slider {
-  left: 40px;
+  left: calc(100% - 30px); /* schuift naar rechts binnen toggle */
 }
 
+/* ==============================
+   ICONS (Dark/Light + Language)
+============================== */
 .toggle-switch .icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  z-index: 2; /* boven slider zodat zichtbaar */
   font-size: 14px;
   font-weight: 600;
   display: flex;
@@ -280,20 +291,58 @@ body.light-mode .toggle-switch {
   justify-content: center;
 }
 
-.toggle-switch .icon.moon {
-  left: 7px;
+/* Dark/Light toggle specifieke iconen */
+.toggle-switch.theme .icon.moon {
+  margin-left: 4px;
 }
 
-.toggle-switch .icon.sun {
-  right: 7px;
+.toggle-switch.theme .icon.sun {
+  margin-right: 4px;
 }
 
-.toggle-switch .icon.NL {
-  left: 7px; /* apart van EN, gecentreerd */
+/* Language toggle specifieke iconen */
+.toggle-switch.language {
+  width: 80px; /* breed genoeg voor NL + EN + slider */
+  justify-content: space-between;
 }
 
-.toggle-switch .icon.EN {
-  right: 7px;
+.toggle-switch.language .icon.NL {
+  /* links */
+}
+
+.toggle-switch.language .icon.EN {
+  /* rechts */
+}
+
+/* ==============================
+   TOGGLE KLEUREN LIGHT MODE
+============================== */
+body.light-mode .toggle-switch .toggle-slider {
+  background: var(--accent-light);
+}
+
+body.light-mode .toggle-switch .icon {
+  color: var(--text-primary-light);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .toggle-switch {
+    height: 30px;
+    padding: 0 4px;
+  }
+  .toggle-switch .toggle-slider {
+    width: 24px;
+    height: 24px;
+  }
+  .toggle-switch.language {
+    width: 70px;
+  }
+  .toggle-switch .icon {
+    font-size: 12px;
+  }
 }
 
 /* ==============================
