@@ -302,7 +302,7 @@ body.light-mode .toggle-switch {
 
 /* Language toggle specifieke iconen */
 .toggle-switch.language {
-  width: 100px; /* breed genoeg voor NL + EN + slider */
+  width: 200px; /* breed genoeg voor NL + EN + slider */
   justify-content: space-between;
 }
 
@@ -338,7 +338,7 @@ body.light-mode .toggle-switch .icon {
     height: 24px;
   }
   .toggle-switch.language {
-    width: 100px;
+    width: 200px;
   }
   .toggle-switch .icon {
     font-size: 12px;
