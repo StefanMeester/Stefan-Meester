@@ -11,9 +11,7 @@
 
 <header class="navbar">
   <div class="logo">
-    <a href="index.html">
-      <img src="assets/images/logo.png" alt="Logo">
-    </a>
+    <a href="index.html"><img src="assets/images/logo.png" alt="Logo"></a>
   </div>
 
   <nav>
@@ -22,8 +20,22 @@
       <li><a href="portfolio.html" data-i18n="nav_portfolio">Portfolio</a></li>
       <li><a href="about.html" data-i18n="nav_about">About</a></li>
       <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
-      <li><button id="langToggle">NL</button></li>
-      <li><button id="themeToggle">🌙</button></li>
+      <li>
+        <!-- Language toggle -->
+        <div class="toggle-switch" id="langToggle">
+          <div class="toggle-slider"></div>
+          <span class="icon">NL</span>
+          <span class="icon">EN</span>
+        </div>
+      </li>
+      <li>
+        <!-- Dark/Light toggle -->
+        <div class="toggle-switch" id="themeToggle">
+          <div class="toggle-slider"></div>
+          <span class="icon moon">🌙</span>
+          <span class="icon sun">☀️</span>
+        </div>
+      </li>
     </ul>
   </nav>
 </header>
@@ -36,6 +48,11 @@
   </div>
 </section>
 
+<section class="grid-preview">
+  <div class="grid-item" style="background-image:url('assets/images/sample1.jpg')"></div>
+  <div class="grid-item" style="background-image:url('assets/images/sample2.jpg')"></div>
+  <div class="grid-item" style="background-image:url('assets/images/sample3.jpg')"></div>
+</section>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
