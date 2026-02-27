@@ -15,11 +15,11 @@
   --accent-hover: #1a2e25;
 
   /* Light Mode - beige/creme stijl */
-  --bg-main-light: #f8f4ec; /* lichte creme */
+  --bg-main-light: #f8f4ec; 
   --bg-section-light: #f8f4ec;
   --bg-card-light: #ffffff;
   --text-primary-light: #1a1a1a;
-  --text-secondary-light: #4a4a4a; /* voor maximale leesbaarheid */
+  --text-secondary-light: #1a1a1a; /* zelfde als navbar voor leesbaarheid */
   --accent-light: #2f4f4f;
   --accent-hover-light: #1a2e25;
 
@@ -62,7 +62,7 @@ body {
 }
 
 .navbar.light-mode {
-  background: rgba(248,244,236,0.95); /* beige creme */
+  background: rgba(248,244,236,0.95); /* creme/light mode */
 }
 
 .navbar .logo img {
@@ -120,7 +120,7 @@ body.light-mode .navbar button {
   background:
     radial-gradient(circle at 65% 25%, rgba(47,79,79,0.35), transparent 45%),
     radial-gradient(circle at 25% 75%, rgba(47,79,79,0.2), transparent 50%),
-    linear-gradient(to bottom, rgba(47,79,79,0.5), rgba(47,79,79,0.9)),
+    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.95)),
     url('../images/hero.jpg') center/cover no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -137,7 +137,7 @@ body.light-mode .navbar button {
 
 .hero-text {
   max-width: 600px;
-  text-align: center; /* gecentreerd voor button en tekst */
+  text-align: center; /* gecentreerd voor button */
 }
 
 .hero h1 {
@@ -275,6 +275,9 @@ body.light-mode .toggle-switch {
   transform: translateY(-50%);
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .toggle-switch .icon.moon {
@@ -286,7 +289,7 @@ body.light-mode .toggle-switch {
 }
 
 .toggle-switch .icon.NL {
-  left: 8px;
+  right: 38px; /* apart van EN, gecentreerd */
 }
 
 .toggle-switch .icon.EN {
