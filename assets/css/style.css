@@ -1,37 +1,71 @@
+/* ==============================
+   VARIABLES
+============================== */
 :root {
-  --bg-main: #121212;
-  --bg-section: #202020;
-  --bg-card: #2a2a2a;
+  /* Dark Mode */
+  --bg-main: #2e2e2e;
+  --bg-section: #2e2e2e;
+  --bg-card: #202020;
   --border-color: #4e4e4e;
-
+  
   --text-primary: #ffffff;
   --text-secondary: #bfbfbf;
+  
+  --accent: #2f4f4f;
+  --accent-hover: #1a2e25;
 
-  --accent: #1f4f4f;
+  /* Light Mode */
+  --bg-main-light: #f5f5f5;
+  --bg-section-light: #ffffff;
+  --bg-card-light: #ececec;
+  --text-primary-light: #1a1a1a;
+  --text-secondary-light: #555555;
+  --accent-light: #2f4f4f;
+  --accent-hover-light: #1a2e25;
+
+  /* Fonts */
+  --font-main: 'Inter', Arial, sans-serif;
 }
 
+/* ==============================
+   GLOBAL STYLES
+============================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-main);
 }
 
 body {
   background: var(--bg-main);
   color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+  line-height: 1.6;
 }
 
+/* ==============================
+   NAVBAR
+============================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5%;
-  background: rgba(18,18,18,0.9);
-  backdrop-filter: blur(10px);
+  padding: 15px 5%;
   position: fixed;
   width: 100%;
+  top: 0;
   z-index: 1000;
+  background: rgba(46, 46, 46, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.navbar.light-mode {
+  background: rgba(245, 245, 245, 0.9);
+}
+
+.navbar .logo img {
+  height: 45px;
 }
 
 .navbar ul {
@@ -41,16 +75,21 @@ body {
   align-items: center;
 }
 
-.navbar a {
+.navbar a, .navbar button {
   color: var(--text-primary);
   text-decoration: none;
+  font-weight: 500;
   position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .navbar a::after {
   content: "";
   position: absolute;
-  bottom: -5px;
+  bottom: -3px;
   left: 0;
   width: 0;
   height: 2px;
@@ -62,40 +101,141 @@ body {
   width: 100%;
 }
 
+.navbar button:hover {
+  color: var(--accent);
+}
+
+/* ==============================
+   HERO SECTION
+============================== */
 .hero {
   height: 100vh;
   display: flex;
   align-items: center;
-  padding-left: 10%;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-              url("../images/hero.jpg") center/cover;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('../images/hero.jpg') center/cover no-repeat;
+  text-align: center;
+  padding: 0 10%;
 }
 
-.hero-content h1 {
+.hero h1 {
   font-size: 60px;
+  margin-bottom: 15px;
 }
 
-.hero-content p {
-  margin: 20px 0;
+.hero p {
+  font-size: 24px;
+  margin-bottom: 25px;
   color: var(--text-secondary);
 }
 
 .btn {
   background: var(--accent);
-  color: #000;
-  padding: 12px 25px;
+  color: #fff;
+  padding: 12px 30px;
   text-decoration: none;
   font-weight: bold;
   transition: 0.3s;
+  border-radius: 6px;
 }
 
 .btn:hover {
-  opacity: 0.8;
+  background: var(--accent-hover);
 }
+
+/* ==============================
+   GRID PREVIEW (Masonry style)
+============================== */
+.grid-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 60px 10%;
+  background: var(--bg-section);
+  transition: background 0.3s;
+}
+
+.grid-item {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* ==============================
+   FOOTER
+============================== */
+footer {
+  background: var(--bg-section);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 40px 10%;
+  font-size: 14px;
+  transition: background 0.3s, color 0.3s;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==============================
+   DARK / LIGHT MODE
+============================== */
 body.light-mode {
-  --bg-main: #f5f3ef;
-  --bg-section: #ffffff;
-  --bg-card: #eaeaea;
-  --text-primary: #000;
-  --text-secondary: #333;
+  background: var(--bg-main-light);
+  color: var(--text-primary-light);
+}
+
+body.light-mode .navbar a,
+body.light-mode .navbar button {
+  color: var(--text-primary-light);
+}
+
+body.light-mode .navbar a::after {
+  background: var(--accent-light);
+}
+
+body.light-mode .hero p {
+  color: var(--text-secondary-light);
+}
+
+body.light-mode .grid-preview {
+  background: var(--bg-section-light);
+}
+
+body.light-mode footer {
+  background: var(--bg-section-light);
+  color: var(--text-secondary-light);
+}
+
+/* ==============================
+   MEDIA QUERIES
+============================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+  .hero p {
+    font-size: 18px;
+  }
+  .navbar ul {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 10px 20px;
+  }
 }
