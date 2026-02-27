@@ -18,12 +18,12 @@
   --bg-main-light: #f5f5f5;
   --bg-section-light: #ffffff;
   --bg-card-light: #ececec;
-  --text-primary-light: #1a1a1a;
+  --text-primary-light: #111111;
   --text-secondary-light: #555555;
   --accent-light: #2f4f4f;
   --accent-hover-light: #1a2e25;
 
-  /* Font */
+  /* Fonts */
   --font-main: 'Space Grotesk', sans-serif;
 }
 
@@ -40,8 +40,8 @@
 body {
   background: var(--bg-main);
   color: var(--text-primary);
-  transition: background 0.3s, color 0.3s;
   line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ==============================
@@ -65,15 +65,6 @@ body {
   background: rgba(255,255,255,0.95);
 }
 
-body.light-mode .navbar a,
-body.light-mode .navbar button {
-  color: #1a1a1a; /* donkerder zwart voor maximaal contrast */
-}
-
-body.light-mode .navbar a::after {
-  background: var(--accent-light);
-}
-
 .navbar .logo img {
   height: 45px;
 }
@@ -81,7 +72,7 @@ body.light-mode .navbar a::after {
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -94,6 +85,11 @@ body.light-mode .navbar a::after {
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+
+body.light-mode .navbar a,
+body.light-mode .navbar button {
+  color: #111111; /* maximum contrast */
 }
 
 .navbar a::after {
@@ -115,18 +111,30 @@ body.light-mode .navbar a::after {
    HERO SECTION
 ============================== */
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
   padding: 0 10%;
   background:
-    radial-gradient(circle at 70% 30%, rgba(47,79,79,0.25), transparent 40%),
-    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
+    radial-gradient(circle at 65% 25%, rgba(47,79,79,0.35), transparent 45%),
+    radial-gradient(circle at 25% 75%, rgba(47,79,79,0.2), transparent 50%),
+    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.95)),
     url('../images/hero.jpg') center/cover no-repeat;
-    background-attachment: fixed; /* blijft vast bij scrollen */
+  background-attachment: fixed;
+}
+
+.hero-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  max-width: 600px;
+  text-align: left;
 }
 
 .hero h1 {
@@ -142,14 +150,20 @@ body.light-mode .navbar a::after {
   color: var(--text-secondary);
 }
 
+.hero-image img {
+  max-height: 500px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
 .btn {
   background: var(--accent);
   color: #fff;
   padding: 12px 30px;
-  text-decoration: none;
   font-weight: 700;
-  transition: 0.3s;
   border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .btn:hover {
@@ -188,16 +202,8 @@ footer {
   background: var(--bg-section);
   color: var(--text-secondary);
   text-align: center;
-  padding: 40px 10%;
+  padding: 20px 10%;
   font-size: 14px;
-}
-
-footer a {
-  color: var(--accent);
-}
-
-footer a:hover {
-  color: var(--accent-hover);
 }
 
 /* ==============================
@@ -208,13 +214,13 @@ body.light-mode {
   color: var(--text-primary-light);
 }
 
-body.light-mode .navbar a,
-body.light-mode .navbar button {
-  color: var(--text-primary-light);
+body.light-mode .navbar {
+  background: rgba(255,255,255,0.95);
 }
 
-body.light-mode .navbar a::after {
-  background: var(--accent-light);
+body.light-mode .navbar a,
+body.light-mode .navbar button {
+  color: #111111;
 }
 
 body.light-mode .hero p {
@@ -233,7 +239,6 @@ body.light-mode footer {
 /* ==============================
    TOGGLE SWITCH (Dark/Light + Language)
 ============================== */
-/* TOGGLE SWITCH */
 .toggle-switch {
   position: relative;
   width: 70px;
@@ -261,7 +266,7 @@ body.light-mode footer {
 }
 
 .toggle-switch.active .toggle-slider {
-  left: 40px; /* schuift naar rechts */
+  left: 40px;
 }
 
 .toggle-switch .icon {
@@ -281,6 +286,7 @@ body.light-mode footer {
 .toggle-switch .icon.EN {
   right: 8px;
 }
+
 /* ==============================
    MEDIA QUERIES
 ============================== */
@@ -306,11 +312,4 @@ body.light-mode footer {
     width: 24px;
     height: 24px;
   }
-}
-footer {
-  background: var(--bg-section);
-  color: var(--text-secondary);
-  text-align: center;
-  padding: 20px 10%;
-  font-size: 14px;
 }
