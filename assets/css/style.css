@@ -307,3 +307,10 @@ body.light-mode footer {
     height: 24px;
   }
 }
+footer {
+  background: var(--bg-section);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px 10%;
+  font-size: 14px;
+}
