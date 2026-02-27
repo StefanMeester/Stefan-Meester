@@ -92,3 +92,10 @@ body {
 .btn:hover {
   opacity: 0.8;
 }
+body.light-mode {
+  --bg-main: #f5f3ef;
+  --bg-section: #ffffff;
+  --bg-card: #eaeaea;
+  --text-primary: #000;
+  --text-secondary: #333;
+}
