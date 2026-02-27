@@ -281,19 +281,19 @@ body.light-mode .toggle-switch {
 }
 
 .toggle-switch .icon.moon {
-  left: 8px;
+  left: 7px;
 }
 
 .toggle-switch .icon.sun {
-  right: 8px;
+  right: 7px;
 }
 
 .toggle-switch .icon.NL {
-  left: 9px; /* apart van EN, gecentreerd */
+  left: 7px; /* apart van EN, gecentreerd */
 }
 
 .toggle-switch .icon.EN {
-  right: 9px;
+  right: 7px;
 }
 
 /* ==============================
