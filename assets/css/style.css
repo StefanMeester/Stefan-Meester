@@ -123,19 +123,17 @@ body.light-mode .navbar button {
   align-items: center;
   justify-content: center;
   padding: 0 10%;
+  position: relative;
+  overflow: hidden;
 
   background:
-    radial-gradient(circle at 70% 20%, rgba(47,79,79,0.35) 0%, transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(26,46,37,0.25) 0%, transparent 65%),
-    linear-gradient(
-      180deg,
-      #2e2e2e 0%,
-      #2a2f2f 25%,
-      #262c2c 50%,
-      #222828 75%,
-      #202020 100%
-    );
+    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.45), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(26,46,37,0.35), transparent 65%),
+    linear-gradient(180deg, #1e1e1e 0%, #181818 50%, #141414 100%);
 
+  background-size: 120% 120%;
+  animation: gradientMove 18s ease-in-out infinite alternate;
+}
   background-attachment: fixed;
 }
 
@@ -189,15 +187,19 @@ body.light-mode .hero p {
 }
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 75% 15%, rgba(47,79,79,0.35) 0%, transparent 60%),
-    radial-gradient(circle at 25% 85%, rgba(26,46,37,0.25) 0%, transparent 65%),
-    linear-gradient(
-      180deg,
-      #f8f4ec 0%,
-      #e8efe9 30%,
-      #dde7e3 60%,
-      #d2dfdb 100%
-    );
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(248,244,236,0.7), transparent 65%),
+    linear-gradient(180deg, #f8f4ec 0%, #efe8dd 50%, #e6dfd4 100%);
+
+  background-size: 120% 120%;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .btn {
