@@ -131,8 +131,8 @@ body.light-mode .navbar a {
 ============================== */
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.25), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(210,200,180,0.35), transparent 60%),
+    radial-gradient(circle at 40% 60%, rgba(47,79,79,0.25), transparent 70%),
+    radial-gradient(circle at 75% 65%, rgba(210,200,180,0.35), transparent 90%),
     linear-gradient(180deg, #f3eee6 0%, #e7dfd2 50%, #ddd4c4 100%);
 
   background-size: 180% 180%;
@@ -153,7 +153,7 @@ body.light-mode .hero {
 }
 
 .hero-text h1 {
-  font-size: 64px;
+  font-size: 84px;
   font-weight: 700;
   letter-spacing: -1px;
   margin-bottom: 20px;
@@ -236,7 +236,7 @@ body.light-mode footer {
 ============================== */
 .toggle-switch {
   position: relative;
-  width: 90px;
+  width: 60px;
   height: 36px;
   border-radius: 50px;
   background: var(--bg-card);
