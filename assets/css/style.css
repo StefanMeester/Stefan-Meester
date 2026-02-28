@@ -3,24 +3,24 @@
 ============================== */
 :root {
 
-  /* Dark */
-  --bg-main: #141414;
-  --bg-section: #181818;
-  --bg-card: #202020;
+  /* DARK */
+  --bg-main: #0f0f0f;
+  --bg-section: #151515;
+  --bg-card: #1c1c1c;
 
   --text-primary: #ffffff;
-  --text-secondary: #bfbfbf;
+  --text-secondary: #a0a0a0;
 
   --accent: #2f4f4f;
-  --accent-hover: #1a2e25;
+  --accent-hover: #1f3a3a;
 
-  /* Light */
-  --bg-main-light: #f4efe6;
-  --bg-section-light: #ece6db;
+  /* LIGHT */
+  --bg-main-light: #f3eee6;
+  --bg-section-light: #e9e3d8;
   --bg-card-light: #ffffff;
 
   --text-primary-light: #1a1a1a;
-  --text-secondary-light: #444;
+  --text-secondary-light: #555;
 
   --accent-light: #2f4f4f;
 
@@ -61,19 +61,19 @@ body.light-mode {
   width: 100%;
   top: 0;
   z-index: 1000;
-  background: rgba(20,20,20,0.85);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  background: rgba(15,15,15,0.85);
   transition: 0.4s ease;
 }
 
 body.light-mode .navbar {
-  background: rgba(244,239,230,0.95);
+  background: rgba(243,238,230,0.95);
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 30px;
   align-items: center;
 }
 
@@ -83,7 +83,6 @@ body.light-mode .navbar {
   font-size: 16px;
   color: var(--text-primary);
   position: relative;
-  transition: 0.3s;
 }
 
 body.light-mode .navbar a {
@@ -106,7 +105,7 @@ body.light-mode .navbar a {
 }
 
 /* ==============================
-   HERO (ANIMATED GRADIENT)
+   HERO – DARK (deep + 2 orbs)
 ============================== */
 .hero {
   min-height: 100vh;
@@ -119,30 +118,34 @@ body.light-mode .navbar a {
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 25% 35%, rgba(47,79,79,0.35), transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(26,46,37,0.30), transparent 65%),
-    linear-gradient(180deg, #121212 0%, #141414 50%, #181818 100%);
+    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(26,46,37,0.30), transparent 60%),
+    linear-gradient(180deg, #0f0f0f 0%, #111111 50%, #141414 100%);
 
-  background-size: 200% 200%;
-  animation: gradientMove 25s ease-in-out infinite alternate;
+  background-size: 180% 180%;
+  animation: gradientMove 28s ease-in-out infinite alternate;
 }
 
+/* ==============================
+   HERO – LIGHT (same concept)
+============================== */
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 25% 35%, rgba(47,79,79,0.25), transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(200,190,170,0.35), transparent 65%),
-    linear-gradient(180deg, #f4efe6 0%, #e8e1d6 50%, #ddd6c8 100%);
+    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.25), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(210,200,180,0.35), transparent 60%),
+    linear-gradient(180deg, #f3eee6 0%, #e7dfd2 50%, #ddd4c4 100%);
 
-  background-size: 200% 200%;
+  background-size: 180% 180%;
 }
 
+/* ANIMATION */
 @keyframes gradientMove {
   0% { background-position: 0% 40%; }
   100% { background-position: 100% 60%; }
 }
 
 /* ==============================
-   HERO TEXT
+   HERO TEXT (fixed hierarchy)
 ============================== */
 .hero-text {
   max-width: 750px;
@@ -159,7 +162,7 @@ body.light-mode .hero {
 .hero-text p {
   font-size: 22px;
   font-weight: 400;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
   color: var(--text-secondary);
 }
 
@@ -172,7 +175,7 @@ body.light-mode .hero-text p {
 ============================== */
 .btn {
   display: inline-block;
-  padding: 14px 34px;
+  padding: 14px 36px;
   font-weight: 700;
   border-radius: 6px;
   text-decoration: none;
@@ -189,11 +192,11 @@ body.light-mode .hero-text p {
    GRID
 ============================== */
 .grid-preview {
-  padding: 80px 10%;
+  padding: 90px 10%;
   background: var(--bg-section);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 body.light-mode .grid-preview {
@@ -201,8 +204,8 @@ body.light-mode .grid-preview {
 }
 
 .grid-item {
-  height: 220px;
-  border-radius: 10px;
+  height: 230px;
+  border-radius: 12px;
   background-size: cover;
   background-position: center;
   transition: 0.4s;
@@ -229,6 +232,48 @@ body.light-mode footer {
 }
 
 /* ==============================
+   TOGGLE SWITCHES (FIXED)
+============================== */
+.toggle-switch {
+  position: relative;
+  width: 90px;
+  height: 36px;
+  border-radius: 50px;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+body.light-mode .toggle-switch {
+  background: var(--bg-card-light);
+}
+
+.toggle-switch .icon {
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.toggle-switch .toggle-slider {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  top: 4px;
+  left: 5px;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.toggle-switch.active .toggle-slider {
+  left: 57px;
+}
+
+/* ==============================
    RESPONSIVE
 ============================== */
 @media (max-width: 768px) {
@@ -241,6 +286,6 @@ body.light-mode footer {
   }
 
   .navbar ul {
-    gap: 15px;
+    gap: 18px;
   }
 }
