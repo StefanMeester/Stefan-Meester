@@ -131,8 +131,8 @@ body.light-mode .navbar a {
 ============================== */
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 40% 60%, rgba(47,79,79,0.25), transparent 70%),
-    radial-gradient(circle at 75% 65%, rgba(210,200,180,0.35), transparent 90%),
+    radial-gradient(circle at 40% 60%, rgba(47,79,79,0.25), transparent 30%),
+    radial-gradient(circle at 75% 65%, rgba(210,200,180,0.35), transparent 45%),
     linear-gradient(180deg, #f3eee6 0%, #e7dfd2 50%, #ddd4c4 100%);
 
   background-size: 180% 180%;
