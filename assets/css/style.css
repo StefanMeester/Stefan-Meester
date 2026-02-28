@@ -236,7 +236,7 @@ body.light-mode footer {
 ============================== */
 .toggle-switch {
   position: relative;
-  width: 60px;
+  width: 75px;
   height: 36px;
   border-radius: 50px;
   background: var(--bg-card);
@@ -270,7 +270,7 @@ body.light-mode .toggle-switch {
 }
 
 .toggle-switch.active .toggle-slider {
-  left: 57px;
+  left: 42px;
 }
 
 /* ==============================
