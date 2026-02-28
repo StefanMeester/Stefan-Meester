@@ -123,13 +123,20 @@ body.light-mode .navbar button {
   align-items: center;
   justify-content: center;
   padding: 0 10%;
+
   background:
-    radial-gradient(circle at 65% 25%, rgba(47,79,79,0.35), transparent 45%),
-    radial-gradient(circle at 25% 75%, rgba(47,79,79,0.2), transparent 50%),
-    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.95)),
-    url('../images/hero.jpg') center/cover no-repeat;
+    radial-gradient(circle at 70% 20%, rgba(47,79,79,0.35) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(26,46,37,0.25) 0%, transparent 65%),
+    linear-gradient(
+      180deg,
+      #2e2e2e 0%,
+      #2a2f2f 25%,
+      #262c2c 50%,
+      #222828 75%,
+      #202020 100%
+    );
+
   background-attachment: fixed;
-  background-size: cover;
 }
 
 .hero-content-wrapper {
@@ -141,26 +148,36 @@ body.light-mode .navbar button {
   width: 100%;
 }
 --font-main: 'Space Grotesk', sans-serif;
+.hero-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .hero-text {
-  max-width: 700px;
+  max-width: 720px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-.hero h1 {
+.hero-text h1 {
   font-size: 64px;
   font-weight: 700;
   letter-spacing: -1px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
-.hero p {
+.hero-text p {
   font-size: 22px;
   font-weight: 400;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   color: var(--text-secondary);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 body.light-mode .hero p {
   color: var(--text-secondary-light);
 }
@@ -172,10 +189,15 @@ body.light-mode .hero p {
 }
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 70% 20%, rgba(47,79,79,0.25), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(26,46,37,0.2), transparent 55%),
-    linear-gradient(to bottom, rgba(248,244,236,0.8), rgba(230,225,215,0.95)),
-    url('../images/hero.jpg') center/cover no-repeat;
+    radial-gradient(circle at 75% 15%, rgba(47,79,79,0.35) 0%, transparent 60%),
+    radial-gradient(circle at 25% 85%, rgba(26,46,37,0.25) 0%, transparent 65%),
+    linear-gradient(
+      180deg,
+      #f8f4ec 0%,
+      #e8efe9 30%,
+      #dde7e3 60%,
+      #d2dfdb 100%
+    );
 }
 
 .btn {
