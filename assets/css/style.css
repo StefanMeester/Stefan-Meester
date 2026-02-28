@@ -2,33 +2,33 @@
    VARIABLES
 ============================== */
 :root {
-  /* Dark Mode */
-  --bg-main: #2e2e2e;
-  --bg-section: #2e2e2e;
+
+  /* Dark */
+  --bg-main: #141414;
+  --bg-section: #181818;
   --bg-card: #202020;
-  --border-color: #4e4e4e;
-  
+
   --text-primary: #ffffff;
   --text-secondary: #bfbfbf;
-  
+
   --accent: #2f4f4f;
   --accent-hover: #1a2e25;
 
-  /* Light Mode - beige/creme stijl */
-  --bg-main-light: #f8f4ec; 
-  --bg-section-light: #f8f4ec;
+  /* Light */
+  --bg-main-light: #f4efe6;
+  --bg-section-light: #ece6db;
   --bg-card-light: #ffffff;
-  --text-primary-light: #1a1a1a;
-  --text-secondary-light: #1a1a1a; /* zelfde als navbar voor leesbaarheid */
-  --accent-light: #2f4f4f;
-  --accent-hover-light: #1a2e25;
 
-  /* Fonts */
+  --text-primary-light: #1a1a1a;
+  --text-secondary-light: #444;
+
+  --accent-light: #2f4f4f;
+
   --font-main: 'Space Grotesk', sans-serif;
 }
 
 /* ==============================
-   GLOBAL STYLES
+   GLOBAL
 ============================== */
 * {
   margin: 0;
@@ -41,7 +41,12 @@ body {
   background: var(--bg-main);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+body.light-mode {
+  background: var(--bg-main-light);
+  color: var(--text-primary-light);
 }
 
 /* ==============================
@@ -51,58 +56,44 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
+  padding: 18px 6%;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  background: rgba(46,46,46,0.9);
-  backdrop-filter: blur(10px);
-  transition: background 0.3s, color 0.3s;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(12px);
+  transition: 0.4s ease;
 }
 
 body.light-mode .navbar {
-  background: rgba(248,244,236,0.95);
-}
-body.light-mode .navbar a {
-  color: #1a1a1a;
-}
-
-body.light-mode .navbar a::after {
-  background: var(--accent-light);
-}
-.navbar .logo img {
-  height: 45px;
+  background: rgba(244,239,230,0.95);
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 }
 
-.navbar a, .navbar button {
-  color: var(--text-primary);
+.navbar a {
   text-decoration: none;
   font-weight: 600;
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
   font-size: 16px;
-  transition: color 0.3s;
+  color: var(--text-primary);
+  position: relative;
+  transition: 0.3s;
 }
 
-body.light-mode .navbar a,
-body.light-mode .navbar button {
+body.light-mode .navbar a {
   color: var(--text-primary-light);
 }
 
 .navbar a::after {
   content: "";
   position: absolute;
-  bottom: -3px;
+  bottom: -4px;
   left: 0;
   width: 0;
   height: 2px;
@@ -115,7 +106,7 @@ body.light-mode .navbar button {
 }
 
 /* ==============================
-   HERO SECTION
+   HERO (ANIMATED GRADIENT)
 ============================== */
 .hero {
   min-height: 100vh;
@@ -123,48 +114,46 @@ body.light-mode .navbar button {
   align-items: center;
   justify-content: center;
   padding: 0 10%;
+  text-align: center;
   position: relative;
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.45), transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(26,46,37,0.35), transparent 65%),
-    linear-gradient(180deg, #1e1e1e 0%, #181818 50%, #141414 100%);
+    radial-gradient(circle at 25% 35%, rgba(47,79,79,0.35), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(26,46,37,0.30), transparent 65%),
+    linear-gradient(180deg, #121212 0%, #141414 50%, #181818 100%);
 
-  background-size: 120% 120%;
-  animation: gradientMove 18s ease-in-out infinite alternate;
-}
-  background-attachment: fixed;
+  background-size: 200% 200%;
+  animation: gradientMove 25s ease-in-out infinite alternate;
 }
 
-.hero-content-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-  width: 100%;
-}
---font-main: 'Space Grotesk', sans-serif;
-.hero-content-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+body.light-mode .hero {
+  background:
+    radial-gradient(circle at 25% 35%, rgba(47,79,79,0.25), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(200,190,170,0.35), transparent 65%),
+    linear-gradient(180deg, #f4efe6 0%, #e8e1d6 50%, #ddd6c8 100%);
+
+  background-size: 200% 200%;
 }
 
+@keyframes gradientMove {
+  0% { background-position: 0% 40%; }
+  100% { background-position: 100% 60%; }
+}
+
+/* ==============================
+   HERO TEXT
+============================== */
 .hero-text {
-  max-width: 720px;
-  width: 100%;
+  max-width: 750px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .hero-text h1 {
   font-size: 64px;
   font-weight: 700;
   letter-spacing: -1px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .hero-text p {
@@ -172,59 +161,24 @@ body.light-mode .navbar button {
   font-weight: 400;
   margin-bottom: 35px;
   color: var(--text-secondary);
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
 }
-body.light-mode .hero p {
+
+body.light-mode .hero-text p {
   color: var(--text-secondary-light);
 }
 
-.hero-image img {
-  max-height: 500px;
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-}
-body.light-mode .hero {
-  background:
-    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(248,244,236,0.7), transparent 65%),
-    linear-gradient(180deg, #f8f4ec 0%, #efe8dd 50%, #e6dfd4 100%);
-
-  background-size: 120% 120%;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(60px);
-  opacity: 0.4;
-  pointer-events: none;
-}
-
+/* ==============================
+   BUTTON
+============================== */
 .btn {
-  display: block;              /* belangrijk */
-  width: fit-content;          /* knop blijft compact */
-  margin: 0 auto;              /* centreert horizontaal */
-  background: var(--accent);
-  color: #fff;
-  padding: 12px 30px;
+  display: inline-block;
+  padding: 14px 34px;
   font-weight: 700;
   border-radius: 6px;
   text-decoration: none;
+  background: var(--accent);
+  color: #fff;
   transition: 0.3s;
-}
-.hero {
-  position: relative;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, var(--bg-section));
 }
 
 .btn:hover {
@@ -232,39 +186,41 @@ body.light-mode .hero {
 }
 
 /* ==============================
-   GRID PREVIEW
+   GRID
 ============================== */
 .grid-preview {
+  padding: 80px 10%;
+  background: var(--bg-section);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-  padding: 60px 10%;
-  background: var(--bg-section);
+  gap: 20px;
+}
+
+body.light-mode .grid-preview {
+  background: var(--bg-section-light);
 }
 
 .grid-item {
-  height: 200px;
+  height: 220px;
+  border-radius: 10px;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  transition: 0.4s;
 }
 
 .grid-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 /* ==============================
    FOOTER
 ============================== */
 footer {
+  padding: 25px;
+  text-align: center;
+  font-size: 14px;
   background: var(--bg-section);
   color: var(--text-secondary);
-  text-align: center;
-  padding: 20px 10%;
-  font-size: 14px;
 }
 
 body.light-mode footer {
@@ -273,153 +229,18 @@ body.light-mode footer {
 }
 
 /* ==============================
-   DARK / LIGHT MODE
-============================== */
-body.light-mode {
-  background: var(--bg-main-light);
-  color: var(--text-primary-light);
-}
-
-body.light-mode .grid-preview {
-  background: var(--bg-section-light);
-}
-
-/* ==============================
-   TOGGLE SWITCHES (Dark/Light + Language)
-============================== */
-
-/* Algemene toggle container */
-.toggle-switch {
-  position: relative;
-  height: 34px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background 0.3s;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-}
-
-/* Light mode achtergrond voor toggles */
-body.light-mode .toggle-switch {
-  background: var(--bg-card-light);
-}
-
-/* ==============================
-   SLIDER CIRKEL
-============================== */
-.toggle-switch .toggle-slider {
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  z-index: 1;
-  transition: left 0.3s, background 0.3s;
-}
-
-/* Active slider positie (rechts) */
-.toggle-switch.active .toggle-slider {
-  left: calc(100% - 30px); /* schuift naar rechts binnen toggle */
-}
-
-/* ==============================
-   ICONS (Dark/Light + Language)
-============================== */
-.toggle-switch .icon {
-  position: relative;
-  z-index: 2; /* boven slider zodat zichtbaar */
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Dark/Light toggle specifieke iconen */
-.toggle-switch.theme .icon.moon {
-  margin-left: 4px;
-}
-
-.toggle-switch.theme .icon.sun {
-  margin-right: 4px;
-}
-
-/* Language toggle specifieke iconen */
-.toggle-switch.language {
-  width: 200px; /* breed genoeg voor NL + EN + slider */
-  justify-content: space-between;
-}
-
-.toggle-switch.language .icon.NL {
-  /* links */
-}
-
-.toggle-switch.language .icon.EN {
-  /* rechts */
-}
-
-/* ==============================
-   TOGGLE KLEUREN LIGHT MODE
-============================== */
-body.light-mode .toggle-switch .toggle-slider {
-  background: var(--accent-light);
-}
-
-body.light-mode .toggle-switch .icon {
-  color: var(--text-primary-light);
-}
-
-/* ==============================
    RESPONSIVE
 ============================== */
 @media (max-width: 768px) {
-  .toggle-switch {
-    height: 30px;
-    padding: 0 4px;
-  }
-  .toggle-switch .toggle-slider {
-    width: 24px;
-    height: 24px;
-  }
-  .toggle-switch.language {
-    width: 200px;
-  }
-  .toggle-switch .icon {
-    font-size: 12px;
-  }
-}
-
-/* ==============================
-   MEDIA QUERIES
-============================== */
-@media (max-width: 768px) {
-  .hero h1 {
+  .hero-text h1 {
     font-size: 42px;
   }
-  .hero p {
+
+  .hero-text p {
     font-size: 18px;
   }
+
   .navbar ul {
     gap: 15px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    padding: 10px 20px;
-  }
-  .toggle-switch {
-    width: 60px;
-    height: 30px;
-  }
-  .toggle-switch .toggle-slider {
-    width: 24px;
-    height: 24px;
   }
 }
