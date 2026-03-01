@@ -147,6 +147,8 @@ body.light-mode .hero {
 /* ==============================
    HERO TEXT (fixed hierarchy)
 ============================== */
+--font-main: 'Space Grotesk', sans-serif;
+
 .hero-text {
   max-width: 750px;
   margin: 0 auto;
