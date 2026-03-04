@@ -15,7 +15,7 @@
 
   /* LIGHT */
   --bg-main-light: #f3eee6;
-  --bg-section-light: #e3d9c8; /* iets donkerder voor gradient */
+  --bg-section-light: #e9e3d8;
   --bg-card-light: #ffffff;
 
   --text-primary-light: #1a1a1a;
@@ -125,9 +125,12 @@ body.light-mode .navbar a {
   overflow: hidden;
   position: relative;
   padding: 0 10%;
+  text-align: left;
+
+  /* Dark mode gradient with moving bolletjes */
   background:
-    radial-gradient(circle at 30% 40%, rgba(47,179,139,0.35), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(26,146,100,0.30), transparent 60%),
+    radial-gradient(circle at 30% 40%, rgba(47,179,179,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(26,146,137,0.30), transparent 60%),
     linear-gradient(180deg, #0f0f0f 0%, #111111 50%, #141414 100%);
   background-size: 180% 180%;
   animation: gradientMove 28s ease-in-out infinite alternate;
@@ -135,34 +138,35 @@ body.light-mode .navbar a {
 
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 30% 40%, rgba(160,120,100,0.35), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(140,100,70,0.30), transparent 60%),
-    linear-gradient(180deg, #f3eee6 0%, #e3d9c8 50%, #d9cbb6 100%);
+    radial-gradient(circle at 30% 40%, rgba(210,180,140,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(180,145,90,0.30), transparent 60%),
+    linear-gradient(180deg, #f3eee6 0%, #e1d3b8 50%, #d5c9aa 100%);
   background-size: 180% 180%;
+  animation: gradientMove 28s ease-in-out infinite alternate;
 }
 
+/* ANIMATION */
 @keyframes gradientMove {
   0% { background-position: 0% 40%; }
   100% { background-position: 100% 60%; }
 }
 
-/* HERO CONTENT SPLIT */
+/* HERO SPLIT LAYOUT */
 .hero-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   gap: 40px;
 }
 
+/* LEFT TEXT + BUTTON */
 .hero-text {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   gap: 20px;
-  min-height: 80vh; /* verticale centrering */
 }
 
 .hero-text h1 {
@@ -185,7 +189,6 @@ body.light-mode .hero-text p {
   color: var(--text-secondary-light);
 }
 
-/* BUTTON */
 .hero-text .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -204,7 +207,7 @@ body.light-mode .hero-text p {
   background: var(--accent-hover);
 }
 
-/* HERO IMAGE */
+/* RIGHT IMAGE */
 .hero-image {
   flex: 1;
   display: flex;
@@ -213,7 +216,7 @@ body.light-mode .hero-text p {
 }
 
 .hero-image img {
-  height: 100vh; /* volledige hero hoogte */
+  height: calc(100vh - 72px); /* totale hero minus navbar */
   width: auto;
   object-fit: cover;
   mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
@@ -221,38 +224,9 @@ body.light-mode .hero-text p {
   transition: 0.3s;
 }
 
-/* MICRO ANIMATED ORBS */
-.hero::before, .hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.2;
-  animation: floatOrb 20s ease-in-out infinite alternate;
-}
-
-.hero::before {
-  width: 180px;
-  height: 180px;
-  background: rgba(47,179,139,0.35);
-  top: 20%;
-  left: 25%;
-}
-
-.hero::after {
-  width: 120px;
-  height: 120px;
-  background: rgba(26,146,100,0.3);
-  top: 60%;
-  left: 70%;
-}
-
-@keyframes floatOrb {
-  0% { transform: translateY(0px) translateX(0px);}
-  50% { transform: translateY(-20px) translateX(15px);}
-  100% { transform: translateY(0px) translateX(0px);}
-}
-
-/* FADE UP ANIMATION */
+/* ==============================
+   FADE UP ANIMATION
+============================== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(25px);}
   to { opacity: 1; transform: translateY(0);}
@@ -355,7 +329,6 @@ body.light-mode .toggle-switch {
 
   .hero-image {
     margin-top: 30px;
-    justify-content: center;
   }
 
   .hero-text h1 { font-size: 42px; }
