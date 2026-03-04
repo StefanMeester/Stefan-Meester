@@ -2,7 +2,6 @@
    VARIABLES
 ============================== */
 :root {
-
   /* DARK */
   --bg-main: #0f0f0f;
   --bg-section: #151515;
@@ -70,6 +69,17 @@ body.light-mode .navbar {
   background: rgba(243,238,230,0.95);
 }
 
+.navbar .logo img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+body.light-mode .navbar .logo img {
+  filter: brightness(0); /* zwart logo in light mode */
+}
+
 .navbar ul {
   list-style: none;
   display: flex;
@@ -83,6 +93,7 @@ body.light-mode .navbar {
   font-size: 16px;
   color: var(--text-primary);
   position: relative;
+  transition: color 0.3s;
 }
 
 body.light-mode .navbar a {
@@ -103,42 +114,30 @@ body.light-mode .navbar a {
 .navbar a:hover::after {
   width: 100%;
 }
-.navbar .logo img {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
-}
+
 /* ==============================
-   HERO – DARK (deep + 2 orbs)
+   HERO – GRADIENT & SPLIT
 ============================== */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 10%;
-  text-align: center;
-  position: relative;
   overflow: hidden;
-
+  position: relative;
+  padding: 0 10%;
   background:
     radial-gradient(circle at 30% 40%, rgba(47,79,79,0.35), transparent 55%),
     radial-gradient(circle at 75% 65%, rgba(26,46,37,0.30), transparent 60%),
     linear-gradient(180deg, #0f0f0f 0%, #111111 50%, #141414 100%);
-
   background-size: 180% 180%;
   animation: gradientMove 28s ease-in-out infinite alternate;
 }
 
-/* ==============================
-   HERO – LIGHT (same concept)
-============================== */
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 40% 60%, rgba(47,79,79,0.25), transparent 15%),
-    radial-gradient(circle at 75% 65%, rgba(26,46,37,0.30), transparent 45%),
+    radial-gradient(circle at 30% 40%, rgba(180,160,140,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(200,180,160,0.25), transparent 60%),
     linear-gradient(180deg, #f3eee6 0%, #e7dfd2 50%, #ddd4c4 100%);
-
   background-size: 180% 180%;
 }
 
@@ -148,27 +147,37 @@ body.light-mode .hero {
   100% { background-position: 100% 60%; }
 }
 
-/* ==============================
-   HERO TEXT (fixed hierarchy)
-============================== */
---font-main: 'Space Grotesk', sans-serif;
+/* HERO CONTENT SPLIT */
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 40px;
+}
 
 .hero-text {
-  max-width: 750px;
-  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  text-align: left;
 }
 
 .hero-text h1 {
-  font-size: 150px;
+  font-size: 64px;
   font-weight: 700;
   letter-spacing: -1px;
-  margin-bottom: 20px;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
 }
 
 .hero-text p {
-  font-size: 80px;
-  font-weight: 400;
-  margin-bottom: 40px;
+  font-size: 22px;
+  opacity: 0.85;
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 0.3s;
   color: var(--text-secondary);
 }
 
@@ -176,22 +185,45 @@ body.light-mode .hero-text p {
   color: var(--text-secondary-light);
 }
 
-/* ==============================
-   BUTTON
-============================== */
-.btn {
+/* BUTTON */
+.hero-text .btn {
   display: inline-block;
-  padding: 14px 36px;
+  padding: 12px 30px;
   font-weight: 700;
   border-radius: 6px;
   text-decoration: none;
   background: var(--accent);
   color: #fff;
+  width: fit-content;
+  transition: background 0.3s;
+  animation: fadeUp 1.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-text .btn:hover {
+  background: var(--accent-hover);
+}
+
+/* HERO IMAGE */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.hero-image img {
+  height: 100vh; /* volledige hero hoogte */
+  object-fit: cover;
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
   transition: 0.3s;
 }
 
-.btn:hover {
-  background: var(--accent-hover);
+/* FADE UP ANIMATION */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
 /* ==============================
@@ -199,10 +231,10 @@ body.light-mode .hero-text p {
 ============================== */
 .grid-preview {
   padding: 90px 10%;
-  background: var(--bg-section);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
+  background: var(--bg-section);
 }
 
 body.light-mode .grid-preview {
@@ -238,7 +270,7 @@ body.light-mode footer {
 }
 
 /* ==============================
-   TOGGLE SWITCHES (FIXED)
+   TOGGLE SWITCHES
 ============================== */
 .toggle-switch {
   position: relative;
@@ -282,107 +314,18 @@ body.light-mode .toggle-switch {
 /* ==============================
    RESPONSIVE
 ============================== */
-@media (max-width: 768px) {
-  .hero-text h1 {
-    font-size: 42px;
-  }
-
-  .hero-text p {
-    font-size: 18px;
-  }
-
-  .navbar ul {
-    gap: 18px;
-  }
-}
-.animated-name {
-  animation: fadeUp 1.2s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ==============================
-   HERO SPLIT LAYOUT
-============================== */
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10%;
-}
-
-.hero-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-}
-
-.hero-text h1 {
-  font-size: 64px;
-}
-
-.hero-text p {
-  font-size: 22px;
-  opacity: 0.85;
-}
-
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-image img {
-  max-height: 520px;
-  width: auto;
-  object-fit: contain;
-}
 @media (max-width: 900px) {
   .hero-content {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
 
   .hero-image {
-    margin-top: 40px;
+    margin-top: 30px;
   }
-}
-.hero-text .btn {
-  display: inline-block;       /* compact */
-  padding: 12px 30px;          /* hoogte en breedte */
-  font-weight: 700;
-  border-radius: 6px;
-  text-decoration: none;
-  background: var(--accent);
-  color: #fff;
-  transition: background 0.3s;
-}
 
-.hero-text .btn:hover {
-  background: var(--accent-hover);
-}
-.hero-image img {
-  height: 100vh;               /* volledige hero hoogte */
-  object-fit: cover;           /* volledige vertical */
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  .hero-text h1 { font-size: 42px; }
+  .hero-text p { font-size: 18px; }
+  .navbar ul { gap: 18px; }
 }
