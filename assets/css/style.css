@@ -310,3 +310,59 @@ body.light-mode .toggle-switch {
     transform: translateY(0);
   }
 }
+/* ==============================
+   HERO SPLIT LAYOUT
+============================== */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-text h1 {
+  font-size: 64px;
+}
+
+.hero-text p {
+  font-size: 22px;
+  opacity: 0.85;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  max-height: 520px;
+  width: auto;
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-top: 40px;
+  }
+}
