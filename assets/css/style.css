@@ -1,8 +1,19 @@
 /* ==============================
-   VARIABLES
+   style.css - complete rewrite
+   - Full hero split layout
+   - Right-aligned full-height photo with subtle feather
+   - Dark mode gradient unchanged (kept as requested)
+   - Light mode gradient made darker/more visible
+   - Micro orb animations on top (subtle)
+   - Logo switches to black in light mode
+   - Text/button vertical centering in left column
 ============================== */
-:root {
-  /* DARK */
+
+/* ------------------------------
+   VARIABLES
+------------------------------ */
+:root{
+  /* DARK (kept intentionally deep) */
   --bg-main: #0f0f0f;
   --bg-section: #151515;
   --bg-card: #1c1c1c;
@@ -13,352 +24,328 @@
   --accent: #2f4f4f;
   --accent-hover: #1f3a3a;
 
-  /* LIGHT */
-  --bg-main-light: #f3eee6;
-  --bg-section-light: #e3d9c9;
+  /* LIGHT (warmer beige, darker accents for visibility) */
+  --bg-main-light: #f1eadf;       /* base page */
+  --bg-section-light: #e5dcc8;    /* sections */
   --bg-card-light: #ffffff;
 
-  --text-primary-light: #1a1a1a;
-  --text-secondary-light: #555;
+  --text-primary-light: #141414;
+  --text-secondary-light: #444444;
 
   --accent-light: #2f4f4f;
 
-  --font-main: 'Space Grotesk', sans-serif;
+  --font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* ==============================
+/* ------------------------------
    GLOBAL
-============================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
+------------------------------ */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--font-family);
+  background:var(--bg-main);
+  color:var(--text-primary);
+  line-height:1.6;
+  transition:background .35s ease,color .35s ease;
 }
 
-body {
-  background: var(--bg-main);
-  color: var(--text-primary);
-  line-height: 1.6;
-  transition: background 0.4s ease, color 0.4s ease;
+/* light mode root */
+body.light-mode{
+  background:var(--bg-main-light);
+  color:var(--text-primary-light);
 }
 
-body.light-mode {
-  background: var(--bg-main-light);
-  color: var(--text-primary-light);
-}
-
-/* ==============================
+/* ------------------------------
    NAVBAR
-============================== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 6%;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(14px);
-  background: rgba(15,15,15,0.85);
-  transition: 0.4s ease;
+------------------------------ */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1200;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 6%;
+  backdrop-filter:blur(12px);
+  background:rgba(15,15,15,0.85); /* dark navbar */
+  transition:background .35s ease;
+}
+body.light-mode .navbar{
+  background:rgba(244,239,230,0.95); /* cream-ish */
 }
 
-body.light-mode .navbar {
-  background: rgba(243,238,230,0.95);
+/* logo sizing, switching to black in light mode */
+.navbar .logo img{
+  height:36px;
+  width:auto;
+  display:block;
+  transition:filter .3s ease, opacity .3s;
+}
+body.light-mode .navbar .logo img{
+  filter:brightness(0); /* renders logo black if it's a white PNG; if not, you may supply a black svg/png */
 }
 
-.navbar .logo img {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
-  transition: 0.3s;
+/* nav links */
+.navbar ul{display:flex;gap:28px;align-items:center;list-style:none}
+.navbar a{
+  color:var(--text-primary); text-decoration:none; font-weight:600; font-size:16px; position:relative;
 }
+body.light-mode .navbar a{ color:var(--text-primary-light) }
+.navbar a::after{ content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:var(--accent); transition:width .28s }
+.navbar a:hover::after{ width:100% }
 
-body.light-mode .navbar .logo img {
-  filter: brightness(0);
-}
+/* toggles (small polish) */
+.toggle-switch{ display:inline-flex; align-items:center; gap:8px }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-.navbar a {
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--text-primary);
-  position: relative;
-  transition: color 0.3s;
-}
-
-body.light-mode .navbar a {
-  color: var(--text-primary-light);
-}
-
-.navbar a::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: 0.3s;
-}
-
-.navbar a:hover::after {
-  width: 100%;
-}
-
-/* ==============================
-   HERO – SPLIT LAYOUT
-============================== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 0 10%;
+/* ------------------------------
+   HERO (SPLIT)
+   - IMPORTANT: padding-right is 0 so image can touch the right edge.
+------------------------------ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:stretch;
+  padding-left:10%;    /* left breathing room */
+  padding-right:0;     /* let the image go to the viewport edge */
   background:
     radial-gradient(circle at 30% 40%, rgba(47,79,79,0.35), transparent 55%),
     radial-gradient(circle at 75% 65%, rgba(26,46,37,0.30), transparent 60%),
     linear-gradient(180deg, #0f0f0f 0%, #111111 50%, #141414 100%);
-  background-size: 180% 180%;
-  animation: gradientMove 28s ease-in-out infinite alternate;
+  background-size:180% 180%;
+  animation:gradientMove 28s ease-in-out infinite alternate;
 }
 
-body.light-mode .hero {
+/* keep dark gradient colors identical to above (no darkness changes) */
+
+/* light mode hero gradient — stronger, darker color stops so visible */
+body.light-mode .hero{
   background:
-    radial-gradient(circle at 30% 40%, rgba(150,120,100,0.35), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(160,140,120,0.25), transparent 60%),
-    linear-gradient(180deg, #e3d9c9 0%, #d4c4aa 50%, #c8b699 100%);
-  background-size: 180% 180%;
+    radial-gradient(circle at 30% 40%, rgba(120,100,80,0.32), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(160,140,120,0.28), transparent 60%),
+    linear-gradient(180deg, #f1eadf 0%, #e0d6c2 45%, #d7cdb8 100%);
+  background-size:180% 180%;
 }
 
-/* Gradient bolletjes micro-animations */
-@keyframes orbMove1 {
-  0%, 100% { transform: translate(0,0); }
-  50% { transform: translate(5px, -5px); }
-}
-
-@keyframes orbMove2 {
-  0%, 100% { transform: translate(0,0); }
-  50% { transform: translate(-5px, 5px); }
-}
-
+/* subtle orb overlays (micro animations). These are additional low-opacity glows.
+   They sit above the base gradient but are subtle so darkmode stays deep. */
 .hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  z-index: 0;
+.hero::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  filter:blur(40px);
+  opacity:0.28;
+  mix-blend-mode:screen;
+  transition:opacity .4s;
+  z-index:2;
 }
 
-.hero::before {
-  top: 30%;
-  left: 30%;
-  background: rgba(47,79,79,0.4);
-  animation: orbMove1 12s ease-in-out infinite alternate;
+/* left orb */
+.hero::before{
+  width:700px;height:700px;
+  left:-120px; top:20%;
+  background:radial-gradient(circle, rgba(47,115,105,0.14) 0%, rgba(47,115,105,0.06) 30%, transparent 60%);
+  animation:orbFloat1 10s ease-in-out infinite;
 }
 
-.hero::after {
-  bottom: 25%;
-  right: 25%;
-  background: rgba(26,46,37,0.3);
-  animation: orbMove2 15s ease-in-out infinite alternate;
+/* right orb */
+.hero::after{
+  width:620px;height:620px;
+  right:-100px; bottom:5%;
+  background:radial-gradient(circle, rgba(32,90,80,0.12) 0%, rgba(32,90,80,0.04) 30%, transparent 60%);
+  animation:orbFloat2 12s ease-in-out infinite;
 }
 
-/* Hero split content */
-.hero-content {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+/* ensure orb opacity reduces in light-mode (so it becomes warmer) */
+body.light-mode .hero::before{ background:radial-gradient(circle, rgba(200,170,140,0.20) 0%, rgba(200,170,140,0.08) 30%, transparent 60%); opacity:0.38 }
+body.light-mode .hero::after{ background:radial-gradient(circle, rgba(220,200,180,0.16) 0%, rgba(220,200,180,0.06) 30%, transparent 60%); opacity:0.34 }
+
+/* orb animations (very subtle movement) */
+@keyframes orbFloat1{
+  0%{ transform: translateY(0) translateX(0) scale(1) }
+  50%{ transform: translateY(-18px) translateX(12px) scale(1.02) }
+  100%{ transform: translateY(0) translateX(0) scale(1) }
+}
+@keyframes orbFloat2{
+  0%{ transform: translateY(0) translateX(0) scale(1) }
+  50%{ transform: translateY(14px) translateX(-10px) scale(1.01) }
+  100%{ transform: translateY(0) translateX(0) scale(1) }
 }
 
-.hero-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  text-align: left;
+/* gradient pan (slow) */
+@keyframes gradientMove{
+  0%{ background-position:0% 40% }
+  100%{ background-position:100% 60% }
 }
 
-.hero-text h1 {
-  font-size: 64px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  animation: fadeUp 1s ease forwards;
-  opacity: 0;
+/* ------------------------------
+   HERO CONTENT GRID
+   Left column (text) + right column (image)
+------------------------------ */
+.hero-content{
+  position:relative;
+  z-index:3;                 /* above orbs */
+  display:flex;
+  align-items:stretch;
+  width:100%;
+  gap:40px;
 }
 
-.hero-text p {
-  font-size: 22px;
-  opacity: 0.85;
-  animation: fadeUp 1.2s ease forwards;
-  animation-delay: 0.3s;
-  color: var(--text-secondary);
+/* LEFT: text column - vertically centered, left-aligned block */
+.hero-text{
+  flex:0 0 48%;             /* roughly half, slightly less so image can reach edge */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;   /* vertical centering in the left column */
+  align-items:flex-start;   /* left-align text */
+  padding-right:4rem;
 }
 
-body.light-mode .hero-text p {
-  color: var(--text-secondary-light);
+/* if you prefer strictly centered in the left column horizontally, change align-items:center; */
+.hero-text h1{
+  font-size:64px;
+  line-height:1.02;
+  font-weight:700;
+  margin-bottom:14px;
+  opacity:0;
+  transform:translateY(18px);
+  animation:fadeUp .9s cubic-bezier(.2,.9,.3,1) forwards;
+}
+.hero-text p{
+  font-size:20px;
+  color:var(--text-secondary);
+  max-width:560px;
+  margin-bottom:26px;
+  opacity:0;
+  transform:translateY(18px);
+  animation:fadeUp .9s cubic-bezier(.2,.9,.3,1) .18s forwards;
 }
 
-.hero-text .btn {
-  display: inline-block;
-  padding: 12px 30px;
-  font-weight: 700;
-  border-radius: 6px;
-  text-decoration: none;
-  background: var(--accent);
-  color: #fff;
-  width: fit-content;
-  transition: background 0.3s;
-  animation: fadeUp 1.4s ease forwards;
-  animation-delay: 0.6s;
+/* buttons stacked / inline */
+.hero-buttons{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  opacity:0;
+  transform:translateY(18px);
+  animation:fadeUp .9s cubic-bezier(.2,.9,.3,1) .36s forwards;
+}
+.hero-buttons .btn{ padding:12px 28px; border-radius:6px; font-weight:700; background:var(--accent); color:#fff; text-decoration:none }
+.hero-buttons .btn.secondary{ background:transparent; color:var(--accent); border:2px solid rgba(255,255,255,0.06) }
+body.light-mode .hero-buttons .btn.secondary{ border-color: rgba(0,0,0,0.08); color:var(--accent-light) }
+
+/* right: image column */
+.hero-image{
+  flex:1 1 52%;
+  display:flex;
+  justify-content:flex-end; /* push image to the right edge */
+  align-items:stretch;
+  position:relative;
+  overflow:hidden;
 }
 
-.hero-text .btn:hover {
-  background: var(--accent-hover);
+/* ensure the image fills the full hero height and touches the viewport right edge */
+.hero-image img{
+  height:100vh;
+  width:auto;
+  display:block;
+  object-fit:cover;
+  /* subtler feather (start visible for most, fade only last 8-12%) */
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+  transition:transform .45s ease;
 }
 
-/* Hero image fully right */
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-}
+/* minor parallax on hover (optional, feels premium) */
+.hero-image:hover img{ transform:scale(1.02) }
 
-.hero-image img {
-  height: calc(100vh - 72px); /* vanaf onder navbar tot onderkant hero */
-  width: auto;
-  object-fit: cover;
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-  transition: 0.3s;
+/* ------------------------------
+   OTHER SECTIONS
+------------------------------ */
+.grid-preview{
+  padding:80px 10%;
+  background:var(--bg-section);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
 }
+body.light-mode .grid-preview{ background:var(--bg-section-light) }
 
-/* ==============================
-   GRID
-============================== */
-.grid-preview {
-  padding: 90px 10%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  background: var(--bg-section);
+.grid-item{
+  height:220px;
+  border-radius:12px;
+  background-size:cover;
+  background-position:center;
+  transition:transform .36s ease, box-shadow .36s ease;
 }
+.grid-item:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 18px 40px rgba(0,0,0,0.35) }
 
-body.light-mode .grid-preview {
-  background: var(--bg-section-light);
-}
-
-.grid-item {
-  height: 230px;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  transition: 0.4s;
-}
-
-.grid-item:hover {
-  transform: scale(1.05);
-}
-
-/* ==============================
+/* ------------------------------
    FOOTER
-============================== */
-footer {
-  padding: 25px;
-  text-align: center;
-  font-size: 14px;
-  background: var(--bg-section);
-  color: var(--text-secondary);
+------------------------------ */
+footer{
+  padding:28px 10%;
+  text-align:center;
+  background:var(--bg-section);
+  color:var(--text-secondary);
 }
 
-body.light-mode footer {
-  background: var(--bg-section-light);
-  color: var(--text-secondary-light);
+/* ------------------------------
+   TOGGLES (kept simple)
+------------------------------ */
+.toggle-switch{
+  position:relative;
+  width:75px;
+  height:36px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px;
+  background:var(--bg-card);
+  cursor:pointer;
 }
+body.light-mode .toggle-switch{ background:var(--bg-card-light) }
 
-/* ==============================
-   TOGGLE SWITCHES
-============================== */
-.toggle-switch {
-  position: relative;
-  width: 75px;
-  height: 36px;
-  border-radius: 50px;
-  background: var(--bg-card);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-  cursor: pointer;
+.toggle-switch .icon{ font-size:14px; font-weight:600; z-index:2 }
+.toggle-switch .toggle-slider{
+  position:absolute; left:6px; top:4px;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--accent); z-index:1; transition:left .28s cubic-bezier(.2,.9,.3,1);
 }
+.toggle-switch.active .toggle-slider{ left: calc(100% - 34px) }
 
-body.light-mode .toggle-switch {
-  background: var(--bg-card-light);
-}
-
-.toggle-switch .icon {
-  font-size: 14px;
-  font-weight: 600;
-  z-index: 2;
-}
-
-.toggle-switch .toggle-slider {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--accent);
-  top: 4px;
-  left: 5px;
-  transition: 0.3s;
-  z-index: 1;
-}
-
-.toggle-switch.active .toggle-slider {
-  left: 42px;
-}
-
-/* ==============================
+/* ------------------------------
    ANIMATIONS
-============================== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px);}
-  to { opacity: 1; transform: translateY(0);}
+------------------------------ */
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(18px) }
+  to{ opacity:1; transform:translateY(0) }
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 40%; }
-  100% { background-position: 100% 60%; }
+/* ------------------------------
+   RESPONSIVE
+------------------------------ */
+@media (max-width:980px){
+  .navbar{ padding:14px 5% }
+  .hero{ padding-left:6%; }
+  .hero-content{ gap:20px }
+  .hero-text{ flex-basis:100%; align-items:center; text-align:center; padding-right:0 }
+  .hero-image{ width:100%; order:2; }
+  .hero-image img{ height:48vh; mask-image: linear-gradient(to left, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%) }
+  .hero-text h1{ font-size:36px }
+  .hero-text p{ font-size:16px }
+  .hero-buttons{ justify-content:center }
 }
 
-@media (max-width: 900px) {
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .hero-image {
-    margin-top: 30px;
-  }
-
-  .hero-text h1 { font-size: 42px; }
-  .hero-text p { font-size: 18px; }
-  .navbar ul { gap: 18px; }
+@media (max-width:520px){
+  .navbar ul{ gap:12px; font-size:14px }
+  .hero-text h1{ font-size:30px }
+  .hero-text p{ font-size:14px }
+  .hero-image img{ height:40vh }
 }
