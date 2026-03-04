@@ -15,7 +15,7 @@
 
   /* LIGHT */
   --bg-main-light: #f3eee6;
-  --bg-section-light: #e9e3d8;
+  --bg-section-light: #e3d9c8; /* iets donkerder voor gradient */
   --bg-card-light: #ffffff;
 
   --text-primary-light: #1a1a1a;
@@ -126,8 +126,8 @@ body.light-mode .navbar a {
   position: relative;
   padding: 0 10%;
   background:
-    radial-gradient(circle at 30% 40%, rgba(47,79,79,0.35), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(26,46,37,0.30), transparent 60%),
+    radial-gradient(circle at 30% 40%, rgba(47,179,139,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(26,146,100,0.30), transparent 60%),
     linear-gradient(180deg, #0f0f0f 0%, #111111 50%, #141414 100%);
   background-size: 180% 180%;
   animation: gradientMove 28s ease-in-out infinite alternate;
@@ -135,13 +135,12 @@ body.light-mode .navbar a {
 
 body.light-mode .hero {
   background:
-    radial-gradient(circle at 30% 40%, rgba(180,160,140,0.35), transparent 55%),
-    radial-gradient(circle at 75% 65%, rgba(200,180,160,0.25), transparent 60%),
-    linear-gradient(180deg, #f3eee6 0%, #e7dfd2 50%, #ddd4c4 100%);
+    radial-gradient(circle at 30% 40%, rgba(160,120,100,0.35), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(140,100,70,0.30), transparent 60%),
+    linear-gradient(180deg, #f3eee6 0%, #e3d9c8 50%, #d9cbb6 100%);
   background-size: 180% 180%;
 }
 
-/* ANIMATION */
 @keyframes gradientMove {
   0% { background-position: 0% 40%; }
   100% { background-position: 100% 60%; }
@@ -161,8 +160,9 @@ body.light-mode .hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   gap: 20px;
-  text-align: left;
+  min-height: 80vh; /* verticale centrering */
 }
 
 .hero-text h1 {
@@ -214,10 +214,42 @@ body.light-mode .hero-text p {
 
 .hero-image img {
   height: 100vh; /* volledige hero hoogte */
+  width: auto;
   object-fit: cover;
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
   transition: 0.3s;
+}
+
+/* MICRO ANIMATED ORBS */
+.hero::before, .hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: floatOrb 20s ease-in-out infinite alternate;
+}
+
+.hero::before {
+  width: 180px;
+  height: 180px;
+  background: rgba(47,179,139,0.35);
+  top: 20%;
+  left: 25%;
+}
+
+.hero::after {
+  width: 120px;
+  height: 120px;
+  background: rgba(26,146,100,0.3);
+  top: 60%;
+  left: 70%;
+}
+
+@keyframes floatOrb {
+  0% { transform: translateY(0px) translateX(0px);}
+  50% { transform: translateY(-20px) translateX(15px);}
+  100% { transform: translateY(0px) translateX(0px);}
 }
 
 /* FADE UP ANIMATION */
@@ -323,6 +355,7 @@ body.light-mode .toggle-switch {
 
   .hero-image {
     margin-top: 30px;
+    justify-content: center;
   }
 
   .hero-text h1 { font-size: 42px; }
