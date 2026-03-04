@@ -366,3 +366,17 @@ body.light-mode .toggle-switch {
     margin-top: 40px;
   }
 }
+.hero-text .btn {
+  display: inline-block;       /* compact */
+  padding: 12px 30px;          /* hoogte en breedte */
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.hero-text .btn:hover {
+  background: var(--accent-hover);
+}
