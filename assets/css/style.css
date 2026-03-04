@@ -380,3 +380,9 @@ body.light-mode .toggle-switch {
 .hero-text .btn:hover {
   background: var(--accent-hover);
 }
+.hero-image img {
+  height: 100vh;               /* volledige hero hoogte */
+  object-fit: cover;           /* volledige vertical */
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
