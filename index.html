@@ -1,56 +1,106 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Stefan Meester | Visual Creator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stefan Meester | AV Specialist</title>
-
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="navbar">
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
   <div class="logo">
-    <a href="index.html"><img src="assets/images/logo/logowit.png" alt="Logo"></a> <width "15px"/>
+    <img src="images/logo.png" alt="Stefan Meester Logo">
   </div>
 
-  <nav>
-    <ul>
-      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-      <li><a href="portfolio.html" data-i18n="nav_portfolio">Portfolio</a></li>
-      <li><a href="about.html" data-i18n="nav_about">About</a></li>
-      <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
-      <li>
-        <!-- Language toggle -->
-        <div class="toggle-switch" id="langToggle">
-          <div class="toggle-slider"></div>
-          <span class="icon">NL</span>
-          <span class="icon">EN</span>
-        </div>
-      </li>
-      <li>
-        <!-- Dark/Light toggle -->
-        <div class="toggle-switch" id="themeToggle">
-          <div class="toggle-slider"></div>
-          <span class="icon moon">🌙</span>
-          <span class="icon sun">☀️</span>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<section class="hero">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
   <div class="hero-content">
-    <h1 data-i18n="hero_title">Stefan Meester</h1>
-    <p data-i18n="hero_subtitle">AudioVisueel Specialist</p>
-    <a href="portfolio.html" class="btn" data-i18n="hero_button">Bekijk mijn werk</a>
+
+    <!-- TEXT -->
+    <div class="hero-text">
+      <h1 class="animated-name">Stefan Meester</h1>
+
+      <h2>Visual Storyteller & AV-Specialist in Opleiding</h2>
+
+      <p>
+        Ik combineer video en fotografie om verhalen visueel tot leven te brengen.
+        Als AV-specialist in opleiding focus ik op creativiteit, techniek en het vastleggen van echte momenten.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#work" class="btn">Bekijk mijn werk</a>
+        <a href="#contact" class="btn secondary-btn">Neem contact op</a>
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="hero-image">
+      <img src="images/stefan.png" alt="Stefan Meester met camera">
+    </div>
+
   </div>
 </section>
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/main.js"></script>
-  <footer>
-  &copy; Stefan Meester 2026
+
+
+<!-- ================= WORK PREVIEW ================= -->
+<section class="work-preview" id="work">
+  <h2>Selected Work</h2>
+
+  <div class="work-grid">
+    <div class="work-item">
+      <h3>Video</h3>
+    </div>
+
+    <div class="work-item">
+      <h3>Photography</h3>
+    </div>
+
+    <div class="work-item">
+      <h3>Creative Projects</h3>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= ABOUT PREVIEW ================= -->
+<section class="about-preview" id="about">
+  <div class="about-content">
+    <div class="about-text">
+      <h2>About Me</h2>
+
+      <p>
+        Mijn passie ligt in het vertellen van verhalen via beeld.
+        Door mijn opleiding als AV-specialist ontwikkel ik zowel technische
+        als creatieve vaardigheden binnen video, montage en fotografie.
+      </p>
+
+      <p>
+        Of het nu gaat om een korte film, een event of een portret,
+        mijn doel is altijd hetzelfde: emotie vastleggen die blijft hangen.
+      </p>
+
+      <a href="about.html" class="btn">Lees meer</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© Stefan Meester 2026</p>
 </footer>
+
 </body>
 </html>
