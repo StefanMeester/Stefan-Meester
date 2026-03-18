@@ -460,3 +460,125 @@ gap:18px;
 }
 
 }
+/* ==============================
+   WIP – CINEMATIC
+============================== */
+
+.wip{
+
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+padding-top:80px;
+
+position:relative;
+
+}
+
+/* subtle film fade background */
+.wip::before{
+
+content:"";
+position:absolute;
+inset:0;
+
+background:radial-gradient(circle at center,rgba(255,255,255,0.05),transparent 70%);
+
+opacity:.4;
+
+}
+
+/* content */
+.wip-content{
+
+z-index:2;
+
+animation:fadeCinematic 1.5s ease forwards;
+
+}
+
+/* small label */
+.wip-label{
+
+font-size:12px;
+letter-spacing:3px;
+text-transform:uppercase;
+
+color:var(--text-secondary);
+
+margin-bottom:10px;
+
+}
+
+/* main title */
+.wip h1{
+
+font-size:56px;
+font-weight:700;
+
+letter-spacing:2px;
+
+margin-bottom:15px;
+
+}
+
+/* subtitle */
+.wip-sub{
+
+font-size:18px;
+color:var(--text-secondary);
+
+margin-bottom:30px;
+
+}
+
+body.light-mode .wip-sub{
+color:var(--text-secondary-light);
+}
+
+/* cinematic line */
+.wip-line{
+
+width:120px;
+height:2px;
+
+margin:20px auto;
+
+background:var(--accent);
+
+animation:lineGrow 1.5s ease forwards;
+
+}
+
+/* animations */
+@keyframes fadeCinematic{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes lineGrow{
+
+from{
+width:0;
+opacity:0;
+}
+
+to{
+width:120px;
+opacity:1;
+}
+
+}
