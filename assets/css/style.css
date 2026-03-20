@@ -760,3 +760,33 @@ padding:100px 10%;
 body.light-mode .about-block {
   background: var(--bg-card-light);
 }
+.before-after {
+  padding: 100px 10%;
+  text-align: center;
+}
+
+.ba-container {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.ba-container img {
+  width: 100%;
+  display: block;
+}
+
+.ba-container .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.ba-slider {
+  width: 100%;
+  margin-top: 20px;
+}
