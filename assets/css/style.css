@@ -338,7 +338,21 @@ color:#fff;
 @media(max-width:500px){
   .masonry { column-count:1; }
 }
+.gallery-toggle {
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
 
+.masonry.hidden {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.masonry.show {
+  max-height: 5000px;
+}
 /* ==============================
    GEAR
 ============================== */
