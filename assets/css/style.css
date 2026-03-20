@@ -342,30 +342,35 @@ transform:scale(1.02);
    GEAR
 ============================== */
 
-.gear{
-
-margin-top:60px;
-
+.gear-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
 }
 
-.gear-grid{
-
-display:flex;
-gap:40px;
-margin-top:20px;
-
+.gear-item {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
 }
 
-.gear-item{
-
-text-align:center;
-
+.gear-item img {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 
-.gear-item img{
+.gear-item p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
 
-width:120px;
-
+.gear-item:hover {
+  transform: translateY(-5px);
 }
 
 /* ==============================
