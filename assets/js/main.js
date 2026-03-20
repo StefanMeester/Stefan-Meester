@@ -92,3 +92,12 @@ toggle.addEventListener("click", () => {
   gallery.classList.toggle("show");
   gallery.classList.toggle("hidden");
 });
+const slider = document.querySelector(".ba-slider");
+const after = document.querySelector(".after");
+
+slider.addEventListener("input", (e) => {
+  const value = e.target.value;
+  after.style.width = value + "%";
+
+  document.querySelector(".ba-container").style.setProperty("--pos", value + "%");
+});
