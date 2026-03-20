@@ -56,3 +56,32 @@ lightbox.addEventListener("click", (e) => {
     lightbox.style.display = "none";
   }
 });
+// ==============================
+// BEFORE AFTER SLIDER (DRAG)
+// ==============================
+
+const container = document.querySelector(".ba-container");
+const afterImg = document.querySelector(".ba-after");
+const line = document.querySelector(".ba-line");
+const handle = document.querySelector(".ba-handle");
+
+let isDragging = false;
+
+container.addEventListener("mousedown", () => isDragging = true);
+window.addEventListener("mouseup", () => isDragging = false);
+
+container.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  const rect = container.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+
+  if (x < 0) x = 0;
+  if (x > rect.width) x = rect.width;
+
+  const percent = (x / rect.width) * 100;
+
+  afterImg.style.width = percent + "%";
+  line.style.left = percent + "%";
+  handle.style.left = percent + "%";
+});
