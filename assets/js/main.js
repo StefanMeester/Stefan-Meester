@@ -55,3 +55,9 @@ function openLightbox(src) {
     document.body.removeChild(lb);
   });
 }
+const slider = document.querySelector(".ba-slider");
+const after = document.querySelector(".after");
+
+slider.addEventListener("input", (e) => {
+  after.style.width = e.target.value + "%";
+});
