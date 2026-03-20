@@ -310,32 +310,33 @@ color:#fff;
 
 }
 
-/* ==============================
-   MASONRY GALLERY
-============================== */
-
-.masonry{
-
-column-count:3;
-column-gap:15px;
-
-margin-top:40px;
-
+.full-gallery {
+  padding: 100px 10%;
 }
 
-.masonry img{
-
-margin-bottom:15px;
-border-radius:6px;
-
-cursor:pointer;
-
-transition:.3s;
-
+.full-gallery h2 {
+  margin-bottom: 30px;
 }
 
-.masonry img:hover{
-transform:scale(1.02);
+.masonry {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.masonry img {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  break-inside: avoid;
+  display: block;
+}
+
+@media(max-width:900px){
+  .masonry { column-count:2; }
+}
+
+@media(max-width:500px){
+  .masonry { column-count:1; }
 }
 
 /* ==============================
