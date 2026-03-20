@@ -31,37 +31,10 @@ langToggle.addEventListener("click", () => {
 loadLanguage(currentLang);
 
 // ==============================
-// SIMPLE LIGHTBOX
+// LIGHTBOX (CLEAN VERSION)
 // ==============================
-const gridItems = document.querySelectorAll(".grid-item");
 
-gridItems.forEach(item => {
-  item.addEventListener("click", () => {
-    const src = item.style.backgroundImage.replace(/url\(["']?/, '').replace(/["']?\)/,'');
-    openLightbox(src);
-  });
-});
-
-function openLightbox(src) {
-  let lb = document.createElement("div");
-  lb.className = "lightbox";
-  lb.innerHTML = `
-    <span class="close">&times;</span>
-    <img src="${src}" class="lightbox-img">
-  `;
-  document.body.appendChild(lb);
-
-  lb.querySelector(".close").addEventListener("click", () => {
-    document.body.removeChild(lb);
-  });
-}
-const slider = document.querySelector(".ba-slider");
-const after = document.querySelector(".after");
-
-slider.addEventListener("input", (e) => {
-  after.style.width = e.target.value + "%";
-});
-const images = document.querySelectorAll(".masonry img");
+const images = document.querySelectorAll(".masonry img, .best-grid img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.querySelector(".lightbox-img");
 const closeBtn = document.querySelector(".close");
@@ -75,4 +48,11 @@ images.forEach(img => {
 
 closeBtn.addEventListener("click", () => {
   lightbox.style.display = "none";
+});
+
+// klik buiten afbeelding sluit ook
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
+  }
 });
