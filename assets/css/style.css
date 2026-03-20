@@ -767,18 +767,22 @@ body.light-mode .about-block {
 
 .ba-container {
   position: relative;
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 900px;
+  margin: 60px auto;
   overflow: hidden;
   border-radius: 12px;
+  cursor: ew-resize;
 }
 
 .ba-container img {
-  width: 100%;
   display: block;
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
 }
 
-.ba-container .after {
+/* AFTER IMAGE (overlay) */
+.ba-after {
   position: absolute;
   top: 0;
   left: 0;
@@ -786,9 +790,33 @@ body.light-mode .about-block {
   overflow: hidden;
 }
 
-.ba-slider {
-  width: 100%;
-  margin-top: 20px;
+/* SLIDER LINE */
+.ba-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: white;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* HANDLE */
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 .lightbox {
   position: fixed;
