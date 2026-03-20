@@ -61,3 +61,18 @@ const after = document.querySelector(".after");
 slider.addEventListener("input", (e) => {
   after.style.width = e.target.value + "%";
 });
+const images = document.querySelectorAll(".masonry img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".close");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  lightbox.style.display = "none";
+});
