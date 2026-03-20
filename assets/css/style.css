@@ -783,28 +783,54 @@ body.light-mode .about-block {
 .ba-container {
   position: relative;
   max-width: 900px;
-  margin: 60px auto;
+  margin: 40px auto;
   overflow: hidden;
   border-radius: 12px;
-  cursor: ew-resize;
 }
 
+/* beide images exact over elkaar */
 .ba-container img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  user-select: none;
-  pointer-events: none;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* AFTER IMAGE (overlay) */
-.ba-after {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* BEFORE = onderlaag */
+.ba-container .before {
+  z-index: 1;
+}
+
+/* AFTER = bovenlaag */
+.ba-container .after {
+  z-index: 2;
   width: 50%;
   overflow: hidden;
 }
 
+/* slider (onzichtbaar maar klikbaar) */
+.ba-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 3;
+}
+
+/* VISUELE LIJN */
+.ba-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: white;
+  z-index: 4;
+}
 /* SLIDER LINE */
 .ba-line {
   position: absolute;
