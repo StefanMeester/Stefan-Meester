@@ -85,3 +85,10 @@ container.addEventListener("mousemove", (e) => {
   line.style.left = percent + "%";
   handle.style.left = percent + "%";
 });
+const toggle = document.querySelector(".gallery-toggle");
+const gallery = document.querySelector(".masonry");
+
+toggle.addEventListener("click", () => {
+  gallery.classList.toggle("show");
+  gallery.classList.toggle("hidden");
+});
