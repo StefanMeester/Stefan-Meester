@@ -101,3 +101,19 @@ slider.addEventListener("input", (e) => {
 
   document.querySelector(".ba-container").style.setProperty("--pos", value + "%");
 });
+const expandBtn = document.getElementById("expandGallery");
+const galleryWrapper = document.getElementById("galleryWrapper");
+
+let expanded = false;
+
+expandBtn.addEventListener("click", () => {
+  expanded = !expanded;
+
+  if (expanded) {
+    galleryWrapper.style.maxHeight = "3000px";
+    expandBtn.textContent = "↑ Minder tonen";
+  } else {
+    galleryWrapper.style.maxHeight = "500px";
+    expandBtn.textContent = "↓ Bekijk alle foto's";
+  }
+});
