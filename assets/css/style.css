@@ -1,5 +1,5 @@
 /* ==============================
-   VARIABLES
+VARIABLES
 ============================== */
 :root{
 --bg-main:#0f0f0f;
@@ -35,15 +35,22 @@ font-family:var(--font-main);
 body{
 background:var(--bg-main);
 color:var(--text-primary);
+line-height:1.6;
+transition:.3s;
+}
+
+body.light-mode{
+background:var(--bg-main-light);
+color:var(--text-primary-light);
 }
 
 img{
-width:100%;
+max-width:100%;
 display:block;
 }
 
 /* ==============================
-NAVBAR
+NAVBAR (ONAANGEPAST)
 ============================== */
 .navbar{
 position:fixed;
@@ -54,45 +61,130 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:18px 6%;
+backdrop-filter:blur(14px);
 background:rgba(15,15,15,.85);
-backdrop-filter:blur(10px);
+}
+
+body.light-mode .navbar{
+background:rgba(243,238,230,.95);
 }
 
 .navbar ul{
+list-style:none;
 display:flex;
 gap:30px;
-list-style:none;
 }
 
 .navbar a{
-color:white;
 text-decoration:none;
+font-weight:600;
+color:var(--text-primary);
+position:relative;
+}
+
+body.light-mode .navbar a{
+color:var(--text-primary-light);
+}
+
+.navbar a::after{
+content:"";
+position:absolute;
+bottom:-4px;
+left:0;
+width:0;
+height:2px;
+background:var(--accent);
+transition:.3s;
+}
+
+.navbar a:hover::after{
+width:100%;
+}
+
+.logo img{height:36px;}
+body.light-mode .logo img{filter:brightness(0);}
+
+/* ==============================
+HERO (INDEX BLIJFT WERKEN)
+============================== */
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding-left:10%;
+padding-right:30vw;
+position:relative;
+overflow:hidden;
+
+background:
+radial-gradient(circle at 30% 40%,rgba(47,79,79,.35),transparent 55%),
+radial-gradient(circle at 75% 65%,rgba(26,46,37,.30),transparent 60%),
+linear-gradient(180deg,#0f0f0f 0%,#111 50%,#141414 100%);
+
+background-size:180% 180%;
+animation:gradientMove 28s ease infinite alternate;
+}
+
+.hero-content{
+max-width:700px;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.hero h1{font-size:64px;}
+.hero p{font-size:22px;color:var(--text-secondary);}
+
+.btn{
+display:inline-block;
+padding:12px 28px;
+background:var(--accent);
+color:#fff;
+text-decoration:none;
+border-radius:6px;
 }
 
 /* ==============================
-HERO
+HERO IMAGE
+============================== */
+.hero-image{
+position:absolute;
+right:0;
+top:0;
+bottom:0;
+width:25vw;
+overflow:hidden;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+mask-image:linear-gradient(to left,rgba(0,0,0,1) 88%,transparent);
+}
+
+/* ==============================
+PHOTO HERO
 ============================== */
 .photo-hero{
-height:60vh;
+height:70vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-background:linear-gradient(180deg,#0f0f0f,#151515);
+
+background:
+radial-gradient(circle at 30% 40%,rgba(47,79,79,.35),transparent),
+linear-gradient(180deg,#0f0f0f,#151515);
 }
 
-.photo-hero h1{
-font-size:60px;
-}
-
-.photo-hero p{
-color:var(--text-secondary);
-}
+.photo-hero h1{font-size:64px;}
+.photo-hero p{color:var(--text-secondary);}
 
 /* ==============================
-LAYOUT SPLIT
+SELECTED + INFO SPLIT
 ============================== */
-.split{
+.photo-top{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:60px;
@@ -100,14 +192,10 @@ padding:100px 10%;
 }
 
 @media(max-width:900px){
-.split{
-grid-template-columns:1fr;
-}
+.photo-top{grid-template-columns:1fr;}
 }
 
-/* ==============================
-SELECTED GRID
-============================== */
+/* SELECTED GRID */
 .best-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -119,15 +207,10 @@ height:250px;
 object-fit:cover;
 border-radius:10px;
 cursor:pointer;
-transition:.3s;
-}
-
-.best-grid img:hover{
-transform:scale(1.03);
 }
 
 /* ==============================
-ABOUT BLOCK
+ABOUT + GEAR
 ============================== */
 .about-block{
 background:var(--bg-card);
@@ -136,9 +219,6 @@ border-radius:12px;
 margin-bottom:30px;
 }
 
-/* ==============================
-GEAR GRID (FIXED!)
-============================== */
 .gear-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
@@ -159,17 +239,19 @@ margin-bottom:10px;
 }
 
 /* ==============================
-FULL GALLERY (COLLAPSIBLE)
+FULL GALLERY (FIXED)
 ============================== */
 .full-gallery{
 padding:100px 10%;
+text-align:center;
 }
 
 .gallery-wrapper{
+position:relative;
 max-height:500px;
 overflow:hidden;
-position:relative;
-transition:.5s;
+transition:.6s;
+margin-top:40px;
 }
 
 .fade-bottom{
@@ -181,13 +263,12 @@ background:linear-gradient(transparent,var(--bg-main));
 }
 
 .expand-btn{
-text-align:center;
 margin-top:20px;
 cursor:pointer;
 opacity:.7;
 }
 
-/* MASONRY FIX */
+/* MASONRY (FIXED) */
 .masonry{
 column-count:3;
 column-gap:15px;
@@ -200,20 +281,13 @@ break-inside:avoid;
 cursor:pointer;
 }
 
-@media(max-width:900px){
-.masonry{column-count:2;}
-}
-
-@media(max-width:500px){
-.masonry{column-count:1;}
-}
-
 /* ==============================
-BEFORE AFTER (WERKT NU ECHT)
+BEFORE AFTER (WERKT NU)
 ============================== */
 .ba-container{
 position:relative;
 max-width:900px;
+height:500px;
 margin:60px auto;
 overflow:hidden;
 border-radius:12px;
@@ -245,14 +319,18 @@ position:absolute;
 left:50%;
 top:50%;
 transform:translate(-50%,-50%);
+width:40px;
+height:40px;
 background:white;
 border-radius:50%;
-padding:10px;
+display:flex;
+align-items:center;
+justify-content:center;
 cursor:ew-resize;
 }
 
 /* ==============================
-LIGHTBOX (WERKT VOOR ALLES)
+LIGHTBOX (1 VERSION!)
 ============================== */
 .lightbox{
 position:fixed;
@@ -279,6 +357,40 @@ cursor:pointer;
 }
 
 /* ==============================
+ALBUM GRID (ANDERE PAGINA)
+============================== */
+.photo-albums{
+padding:100px 10%;
+text-align:center;
+}
+
+.album-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.album-card{
+position:relative;
+overflow:hidden;
+border-radius:10px;
+}
+
+.album-card img{
+height:300px;
+object-fit:cover;
+}
+
+.album-overlay{
+position:absolute;
+bottom:0;
+width:100%;
+padding:20px;
+background:linear-gradient(transparent,rgba(0,0,0,.8));
+color:white;
+}
+
+/* ==============================
 FOOTER
 ============================== */
 footer{
@@ -286,4 +398,34 @@ padding:30px;
 text-align:center;
 background:var(--bg-section);
 color:var(--text-secondary);
+}
+
+/* ==============================
+RESPONSIVE
+============================== */
+@media(max-width:900px){
+
+.hero{
+padding-right:10%;
+}
+
+.hero-image{
+display:none;
+}
+
+.masonry{
+column-count:2;
+}
+
+}
+
+@media(max-width:500px){
+
+.masonry{
+column-count:1;
+}
+
+.navbar ul{
+gap:18px;
+}
 }
