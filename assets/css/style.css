@@ -882,3 +882,43 @@ body.light-mode .about-block {
   color: white;
   cursor: pointer;
 }
+.full-gallery {
+  padding: 100px 10%;
+  text-align: center;
+}
+
+.gallery-wrapper {
+  position: relative;
+  max-height: 500px;
+  overflow: hidden;
+  transition: 0.6s;
+  margin-top: 40px;
+}
+
+/* fade effect onderin */
+.fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+
+  background: linear-gradient(transparent, var(--bg-main));
+}
+
+body.light-mode .fade-bottom {
+  background: linear-gradient(transparent, var(--bg-main-light));
+}
+
+/* knop */
+.expand-btn {
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.expand-btn:hover {
+  opacity: 1;
+}
