@@ -328,7 +328,6 @@ color:#fff;
   margin-bottom: 20px;
   border-radius: 10px;
   break-inside: avoid;
-  display: block;
 }
 
 @media(max-width:900px){
