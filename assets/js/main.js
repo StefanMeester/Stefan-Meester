@@ -102,3 +102,15 @@ container.addEventListener("mousemove", (e) => {
   line.style.left = percent + "%";
   handle.style.left = percent + "%";
 });
+document.querySelectorAll('.toggle-container').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    
+    // Voorbeeld: Check welke toggle het is
+    if (toggle.id === 'themeToggle') {
+        const isDark = toggle.classList.contains('active');
+        console.log("Dark mode is nu:", isDark);
+        // Voeg hier je code toe om body class te veranderen
+    }
+  });
+});
