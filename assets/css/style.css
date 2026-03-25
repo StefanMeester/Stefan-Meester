@@ -921,3 +921,49 @@ body.light-mode .fade-bottom {
 .expand-btn:hover {
   opacity: 1;
 }
+.toggle-container {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc; /* Uit-kleur (grijs) */
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+  user-select: none;
+}
+
+/* De tekst/icoontjes achter de slider */
+.toggle-background {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  z-index: 1;
+}
+
+/* Het witte schuifknopje */
+.toggle-slider {
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Actieve status (Aan) */
+.toggle-container.active {
+  background-color: #4cd964; /* De groene kleur uit je foto */
+}
+
+.toggle-container.active .toggle-slider {
+  transform: translateX(30px); /* Schuif naar rechts */
+}
